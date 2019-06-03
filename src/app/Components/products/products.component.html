@@ -1,0 +1,47 @@
+
+      <!--<img width="120" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">-->
+<div class="col-md-12 mt-4">
+    <div class="" *ngIf="products?.length > 0; else noproducts">
+        <div class="card mt-2 animated fadeIn delay-1" *ngFor="let product of products">
+          <div class="card-body" >
+            <h2 class="card-title lead"> <strong>{{ product.name }} </strong> </h2>
+            <h4 class="card-title lead text-dark"> {{ product.description }}  </h4>
+            <h3 class="card-title lead text-success"> <strong>{{ product.price | currency }} </strong> </h3>
+             <button class="btn btn-outline-danger mr-2" [swal]="removeProduct" (confirm)="deleteProduct($event, product)">delete <i class="fas fa-trash-alt"></i></button>
+             <button class="btn btn-outline-warning"  (click)="editProduct($event, product)">Edit <i class="fas fa-pencil-alt"></i></button>
+
+            <div class="mt-2" *ngIf="editing && editingProduct.id == product.id">
+                <form (ngSubmit)="updateProduct()">
+                    <div class="form-group">
+                      <input type="text" name="name" [(ngModel)]="editingProduct.name" class="form-control" placeholder="Add a Name" required>
+                    </div>
+                    <div class="form-group">
+                      <textarea name="description" [(ngModel)]="editingProduct.description" class="form-control" placeholder="Add a Description" required></textarea>
+                    </div>
+                    <div class="form-group">
+                      <input type="number" name="price" [(ngModel)]="editingProduct.price" class="form-control" placeholder="Add a Price" required>
+                    </div>
+                        <button type="submit" class="btn btn-block btn-primary">Update</button>
+                      </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <ng-template #noproducts>
+        <p>There are not Products Yet.</p>
+      </ng-template>
+</div>
+
+<swal
+  #removeProduct
+   title="Are you Sure?"
+   text="Your will not be able to recover this file!"
+   type="warning"
+   [showCancelButton]="true"
+   confirmButtonText= "Yes, delete it!"
+   confirmButtonClass= "btn-danger"
+  >
+</swal>
+
+      

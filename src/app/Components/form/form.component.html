@@ -1,0 +1,20 @@
+<div class="col-md-6">
+  <div class="card animated flipInX delay-1">
+  <div class="card-body">
+    <form (ngSubmit)="addProduct()">
+  <div class="form-group">
+    <input type="text" name="name" [(ngModel)]="product.name" class="form-control" placeholder="Add a Name" required>
+  </div>
+  <div class="form-group">
+    <textarea name="description" [(ngModel)]="product.description" class="form-control" placeholder="Add a Description" required></textarea>
+  </div>
+  <div class="form-group">
+    <input type="number" name="price" [(ngModel)]="product.price" class="form-control" placeholder="Add a Price" required>
+  </div>
+      <button class="btn btn-block btn-primary">Save</button>
+    </form>
+  </div>
+</div>
+</div>
+
+
