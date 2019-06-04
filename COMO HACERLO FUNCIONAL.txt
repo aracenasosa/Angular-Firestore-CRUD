@@ -1,2 +1,0 @@
-Entra al archivo product.component.ts luego da un CTRL + S dentro del archivo.
-una vez termine de compilar refresca la pagina
